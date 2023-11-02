@@ -61,3 +61,35 @@ jira issue worklog add "ABC-5457" "15m" --comment "Dolor sit amet" --no-input --
 jira issue worklog add "FOOB-6" "4h 30m" --comment "Consectetur adipiscing elit" --no-input --started "2023-10-07 08:30:00" --timezone "Europe/Helsinki"
 jira issue worklog add "ZOO-8077" "3h" --comment "Sed do eiusmod tempor incididunt" --no-input --started "2023-10-07 13:00:00" --timezone "Europe/Helsinki"
 ```
+
+## Vim Syntax Highlighting
+
+In the example below replace the worklog file path and ticket type(s) to match your case.
+
+File `~/.vim/ftdetect/worklog.vim`:
+```
+autocmd BufRead,BufNewFile ~/worklog/*.csv setfiletype worklog
+```
+
+File: `~/.vim/syntax/worklog.vim`:
+```
+if exists("b:current_syntax")
+    finish
+endif
+
+syntax match worklogHeader /^started:\s\d\{4}-\d\{2}-\d\{2}\s\d\{2}:\d\{2}:\d\{2}\s.\+$/
+syntax match worklogComment /^#.*/
+syntax match worklogTicketType1 /^XZ-140\|XZ-143\|XZ-526/
+syntax match worklogTicketType2 /^FOOB-[126]/
+syntax match worklogTicketType3 /^ABC-\d\+/
+syntax match worklogTableSeparator /|/
+
+highlight link worklogHeader Constant
+highlight link worklogComment Comment
+highlight link worklogFixedTicket Statement
+highlight link worklogMiscTicket Statement
+highlight link worklogDevTicket Statement
+highlight link worklogTableSeparator Comment
+
+let b:current_syntax = "worklog"
+```
