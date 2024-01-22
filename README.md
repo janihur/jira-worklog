@@ -1,13 +1,18 @@
 # jira-worklog
 
-A simple [Bash](https://www.gnu.org/software/bash/) wrapper for [ankitpokhrel/jira-cli](https://github.com/ankitpokhrel/jira-cli) to convert a text file into JIRA issue worklog entries. The wrapper is build to fit my workflow where the work is recorded during the day and only saved to JIRA in the end of the day.
+A simple [Bash](https://www.gnu.org/software/bash/) wrapper for [ankitpokhrel/jira-cli](https://github.com/ankitpokhrel/jira-cli) to convert a text file into [Jira](https://www.atlassian.com/software/jira) issue worklog entries. The wrapper is build to fit my workflow where the work is recorded during the day and only saved to Jira in the end of the day.
 
 Requires:
 
 * [ankitpokhrel/jira-cli](https://github.com/ankitpokhrel/jira-cli)
 * [hroptatyr/dateutils](https://github.com/hroptatyr/dateutils)
   * Note in Ubuntu the commands are different than in documentation. The commands are prefixed with `dateutils` to avoid name collisions. See `man dateutils` for the details.
-  
+
+## Tools
+
+* `worklog.sh` - report the working time recorded in the worklog file to Jira.
+* `worklog-init.sh` - create the initial worklog file for the current day.
+
 ## Worklog Text File Format
 
 Lines starting with `#` are comments and are ignored.
