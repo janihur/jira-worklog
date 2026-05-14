@@ -1,13 +1,11 @@
 #!/bin/bash
 
-set -e
-#set -x
+set -o errexit
 
-# TODO check JIRA_API_TOKEN required by jira-cli is set
+: "${JIRA_API_TOKEN:?JIRA_API_TOKEN environment variable is required}"
 
 {
     read dummy started_date started_time timezone
-    # echo "${started_date}|${started_time}|${timezone}"
     declare started="${started_date} ${started_time}"
     while IFS=\| read col1 col2 rest
     do
